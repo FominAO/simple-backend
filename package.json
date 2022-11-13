@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-complete-guide",
+  "name": "simple-backend",
   "version": "1.0.0",
-  "description": "Complete Node.js Guide",
+  "description": "Provides simple crud api setup",
   "main": "app.js",
   "type": "module",
   "scripts": {
@@ -9,7 +9,7 @@
     "start": "nodemon app.js",
     "start:prod": "node app.js --prod"
   },
-  "author": "Maximilian Schwarzmüller",
+  "author": "Aleksandr Fomin",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.18.3"
