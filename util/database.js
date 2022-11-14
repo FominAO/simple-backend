@@ -1,7 +1,7 @@
 import mysql from 'mysql2';
 
 export const sqlPool = mysql.createPool({
-    host: 'https://localhost',
+    host: 'localhost',
     user: "",
     database: '',
     password: ''

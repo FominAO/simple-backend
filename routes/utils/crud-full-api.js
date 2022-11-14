@@ -17,7 +17,7 @@ const CRUDrouter = (name, isSQL = false, isProd = false) => {
     }
 
     if (isSQL) {
-        crudRouterSQL(name + '/', new MySQLTable('name'));
+        return crudRouterSQL('/' + name, new MySQLTable(name));
     }
 
     return crudRouter('/' + name, new CRUDApi(p(name, isProd)))
