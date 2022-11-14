@@ -1,5 +1,6 @@
 import path from 'path';
 import CRUDApi from '../../util/crud.helper.js';
+import { MySQLTable } from '../../util/database.js';
 import crudRouterSQL from './crud-router-sql.js';
 import crudRouter from './crud-router.js';
 
@@ -16,7 +17,7 @@ const CRUDrouter = (name, isSQL = false, isProd = false) => {
     }
 
     if (isSQL) {
-        crudRouterSQL(root, new MySQLTable('checks'));
+        crudRouterSQL(name + '/', new MySQLTable('name'));
     }
 
     return crudRouter('/' + name, new CRUDApi(p(name, isProd)))

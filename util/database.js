@@ -1,10 +1,10 @@
 import mysql from 'mysql2';
 
 export const sqlPool = mysql.createPool({
-    host: '10.8.0.2',
-    user: "root",
-    database: 'bruh-app',
-    password: '78436587'
+    host: 'https://localhost',
+    user: "",
+    database: '',
+    password: ''
 }).promise();
 
 export const getAll = (table) => `SELECT * FROM ${table}`;
