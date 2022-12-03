@@ -4,6 +4,7 @@ import CRUDrouter from './utils/crud-full-api.js';
 import healthRouter from './utils/health-router.js';
 
 const staticRouters = [backupRouter, healthRouter];
+const customRouters = [];
 const routes = [
     {
         name: 'users',
@@ -12,7 +13,7 @@ const routes = [
     {
         name: 'examples',
         isSQL: false
-    },
+    }
 ];
 const router = express.Router();
 
@@ -22,7 +23,7 @@ const generatedRouters = (isProd = false) => {
     routes.forEach(({name, isSQL = false}) => {
         routers.push(CRUDrouter(name, isSQL, isProd));
     });
-    return [...staticRouters, ...routers]
+    return [...staticRouters, ...customRouters, ...routers]
 }
 
 export default generatedRouters;

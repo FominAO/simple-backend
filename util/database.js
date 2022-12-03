@@ -2,7 +2,7 @@ import mysql from 'mysql2';
 
 export const sqlPool = mysql.createPool({
     host: 'localhost',
-    user: "",
+    user: '',
     database: '',
     password: ''
 }).promise();
@@ -47,6 +47,9 @@ export class MySQLTable {
                 const and = sql.length > 6 ? ' AND' : '';
                 if (filters[key] === '') {
                     return sql;
+                }
+                if (key === 'from' || key === 'to') {
+                    return `${sql}${and} DATE(createdAt)${key === 'from' ? '>=' : '<='}'${filters[key]}'`
                 }
                 return `${sql}${and} ${key}='${filters[key]}'`
             }, 'WHERE ')

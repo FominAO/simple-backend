@@ -4,19 +4,8 @@ import { MySQLTable } from '../../util/database.js';
 function crudRouterSQL(root, DB = new MySQLTable('')) {
     const router = express.Router();
 
-    const cache = {};
-
-    router.get(root + '*', (req, res, next) => {
-        if (cache[req.url]) {
-            res.send(cache[req.url]);
-        } else {
-            next();
-        }
-    })
-
     router.get(root + '/', (req, res, next) => {
         DB.getFiltered(req.query).then(({rows, meta}) => {
-            cache[req.url] = {response: rows};
             res.send({response: rows})
         })
     });
@@ -29,7 +18,6 @@ function crudRouterSQL(root, DB = new MySQLTable('')) {
         const id = req.params.id;
         
         DB.getById(id).then((e) => {
-            cache[req.url] = e;
             res.send(e);
         });
     });

@@ -23,6 +23,7 @@ function crudRouter(root, DB) {
     });
 
     router.post(root + '/create', (req, res, next) => {
+        cache = {};
         DB.create(req.body, e => res.send(e));
     });
 
@@ -36,15 +37,19 @@ function crudRouter(root, DB) {
     });
 
     router.post(root + '/:id', (req, res) => {
-    const id = req.params.id;
+        cache = {};
 
-    DB.updateById(id, req.body, e => res.send(e));
+        const id = req.params.id;
+
+        DB.updateById(id, req.body, e => res.send(e));
     });
 
     router.delete(root + '/:id', (req, res) => {
-    const id = req.params.id;
+        cache = {};
+    
+        const id = req.params.id;
 
-    DB.deleteById(id, e => res.send(e));
+        DB.deleteById(id, e => res.send(e));
     });
 
     return router;
