@@ -1,9 +1,8 @@
 import express from 'express';
-import backupRouter from './utils/backup-router.js';
 import CRUDrouter from './utils/crud-full-api.js';
 import healthRouter from './utils/health-router.js';
 
-const staticRouters = [backupRouter, healthRouter];
+const staticRouters = [healthRouter];
 const customRouters = [];
 const routes = [
     {

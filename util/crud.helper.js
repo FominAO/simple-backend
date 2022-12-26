@@ -87,7 +87,7 @@ class CRUDApi {
                 } else {
                     fs.writeFile(this.path, JSON.stringify(filteredEntities), err => console.log(err));
                     
-                    callback({response: filteredEntities});
+                    callback({response: targetEntity});
                 }
             }
         });
