@@ -6,6 +6,10 @@ class CRUDApi {
 
     constructor(path) {
         this.path = path;
+        
+        if (!fs.existsSync(this.path)) {
+            fs.writeFileSync(this.path, '[]')
+        }
     }
 
     getAll(callback) {

@@ -1,12 +1,21 @@
-export function filterByParams(array = [], params = {}) {
-    const filterRule = (v) =>
-        (params.createdBy ? v.createdBy === +params.createdBy : true) &&
-        (params.from ? (new Date(v.createdAt) >= (new Date(params.from))) : true) &&
-        (params.to ? (+new Date(v.createdAt) <= (+new Date(params.to) + 24*60*60*1000)) : true) &&
-        (params.currency ? v.currency === +params.currency : true) &&
-        (params.type ? v.type === params.type : true) &&
-        (params.name ? (v.name.toLowerCase().contains(params.name)) : true) &&
-        (params.isVisible ? (params.isVisible === 'true' ? v.isVisible : !v.isVisible) : true)
+import { paramsToFilter } from "../routes/filter-params-list.js";
 
-    return array.filter(filterRule);
+export function filterByParams(array = [], params = {}) {
+
+    return array.filter(v => compare(v, params));
+}
+
+function compare(dbObj, params) {
+    let result = true;
+
+    paramsToFilter.forEach(param => {
+        const paramName = param.paramName;
+        const dbName = param.dbName || paramName;
+
+        if (params[paramName] && result) {
+            result = result && param.compareRule(dbObj[dbName], params[paramName])
+        }
+    });
+
+    return result;
 }

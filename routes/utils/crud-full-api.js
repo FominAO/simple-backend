@@ -7,7 +7,6 @@ import crudRouter from './crud-router.js';
 const p = (name, isProd) => path.join(
   './',
   'database',
-  'data',
   `${name}-list${isProd ? '.prod' : ''}.json`
 );
 
